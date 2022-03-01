@@ -5,24 +5,66 @@
 
 //Create a webpage with a 16x16 grid of square divs
 //const grid = document.getElementById("grid");
-const container = document.getElementById("container");
-const gridBoxes = document.querySelectorAll(".gridBox");
+const container = document.getElementById("mainBox");
+const addButton = document.getElementById("addCount");
+const decButton = document.getElementById("decCount");
+const counter = document.getElementById("counter");
+const okButton = document.getElementById("okay");
 
-const gridSize = 16;
+let DEFAULT_GRID_SIZE = 16;
+let newSize = 4;
 
+window.addEventListener("load", createGrid);
+// create grid
 function createGrid(){
-    container.style.gridTemplateColumns = `repeat${gridSize}, 1fr`;
-    for(let i =0; i < gridSize*gridSize; i++){
+    container.style.gridTemplateColumns = `repeat(${DEFAULT_GRID_SIZE}, auto)`;
+    container.style.gridTemplateRows = `repeat(${DEFAULT_GRID_SIZE}, auto)`;
+    for(let i =0; i < DEFAULT_GRID_SIZE*DEFAULT_GRID_SIZE; i++){
         const grid = document.createElement("div");
-        grid.classList.add("gridBox");
+        grid.className="gridBox";
         container.appendChild(grid);
     }
+    rndColor();
 }
-createGrid();
-
-gridBoxes.forEach(gridBox =>{
-    gridBox.addEventListener("click", ()=>{
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        gridBox.style.backgroundColor = "#"+randomColor;
+// reset
+function reset(){
+    const reset = document.getElementById("resetButton");
+    reset.addEventListener("click", () =>{
+        location.reload();
     })
-})
+}
+// ++ grid size with counter
+addButton.addEventListener("click", ()=>{
+    newSize = newSize+2;
+    counter.innerHTML = newSize;
+});
+// -- grid size with counter
+decButton.addEventListener("click", ()=>{
+    newSize = newSize-2;
+    counter.innerHTML = newSize;
+});
+// ok apply the new size
+okButton.addEventListener("click", adjustGrid);
+// apply new size of grid
+function adjustGrid(){
+    DEFAULT_GRID_SIZE = newSize;
+    clearGrid();
+    createGrid();
+}
+function clearGrid(){
+    const gridArray = Array.from(container.childNodes);
+    gridArray.forEach((element) =>{
+        container.removeChild(element);
+    });
+}
+//random color generator
+function rndColor(){
+    const gridBoxes = document.querySelectorAll(".gridBox");
+    gridBoxes.forEach(gridBox =>{
+        gridBox.addEventListener("mouseover", ()=>{
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            gridBox.style.backgroundColor = "#"+randomColor;
+        })
+    })
+}
+reset();

@@ -1,12 +1,20 @@
 .container{
     display: grid;
-    justify-content: center;
-    align-content: center;
-    flex-grow: 1;
-    grid-template-columns: repeat(16, 2em);
-    grid-template-rows: repeat(16, 2em);
+    grid-gap: 0px;
+    /* justify-content: center;
+    align-content: center; */
+    max-width: 560px;
+    max-height: 560px;
+    margin: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    border: 2px solid black;
+    border-radius: 5px;
 }
 .gridBox{
+    position: relative;
     margin:0px;
-    border: 1px solid black;    
+    border: 1px solid rgb(0, 0, 0);
+    padding-bottom: 100%;
+    background-color:#e2e3de;
 }
