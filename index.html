@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <title>TOP ETCH A SKETCH</title>
 </head>
-<body >
-    <input type="button" value="reset" id="resetButton" >
-    <div>
-        <span id="counter">4</span> <br>
-        <button id="addCount">+</button>
-        <button id="decCount">-</button>
-        <input type="button" value="Ok" id="okay">
+<body class="body">
+    <h1 class="header1">Etch-A-Sketch!</h1>
+    <div class="drawBox">
+        <div class="container" id="mainBox" ></div>
+        <div class="buttonBox">
+            <button id="addCount" class="button">+</button>
+            <span id="counter" class="counter">4</span>
+            <button id="decCount" class="button">-</button>
+        </div>
+        <div class="mainButtons">
+            <input type="button" value="Ok" id="okay" class="button action">
+            <input type="button" value="reset" id="resetButton" class="button action">
+        </div>
     </div>
-    <div class="container" id="mainBox" ></div>
-    <input type="button" value="test">
 </body>
 </html>

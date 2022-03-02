@@ -1,20 +1,72 @@
+.body{
+    background-color: azure;
+}
 .container{
     display: grid;
     grid-gap: 0px;
-    /* justify-content: center;
-    align-content: center; */
     max-width: 560px;
     max-height: 560px;
     margin: auto;
-    /* margin-left: auto;
-    margin-right: auto; */
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
+
 }
 .gridBox{
     position: relative;
     margin:0px;
-    border: 1px solid rgb(0, 0, 0);
     padding-bottom: 100%;
     background-color:#e2e3de;
+    border-radius: 1px;
+
+}
+.header1{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 3%;
+}
+.buttonBox{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-left: 45%;
+    margin-right: 45%;
+    
+}
+.mainButtons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+.counter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid yellow;
+    border-radius: 5px;
+    text-align: center;
+    width: 7em;
+    height: 4em;
+    background-color:#e2e3de;
+    box-shadow: 4px 2px grey;
+}
+.button{
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 35px;
+    box-shadow: 4px 2px grey;
+}
+.action{
+    height: 50px;
+    text-align: center;
+    width: 50px;
+}
+.drawBox{
+    background-color: red;
+    border-radius: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
