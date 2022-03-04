@@ -1,9 +1,3 @@
-
-// Create the divs using JavaScript. Don’t try making them by hand with copy and pasting in your HTML file!
-// It’s best to put your grid squares inside another “container” div (which can go directly in your HTML).
-// There are several different ways to make the divs appear as a grid (versus just one on each line).
-
-//Create a webpage with a 16x16 grid of square divs
 //const grid = document.getElementById("grid");
 const container = document.getElementById("mainBox");
 const addButton = document.getElementById("addCount");
@@ -29,10 +23,44 @@ function createGrid(){
         grid.className="gridBox";
         container.appendChild(grid);
     }
-    rndColor();
-    black();
-    eraserTool();
-    colorPick();
+    const gridBoxes = document.querySelectorAll(".gridBox");
+    //random color generator
+    rgb.addEventListener("click", ()=>{
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                gridBox.style.backgroundColor = "#"+randomColor;
+            })
+        })
+    })
+    //black color
+    blackPencil.addEventListener("click", ()=>{
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = "000000";
+                gridBox.style.backgroundColor = "#"+color;
+            })
+        })
+    })
+
+    //eraser
+    eraser.addEventListener("click", ()=> {
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = "e2e3de";
+                gridBox.style.backgroundColor = "#"+color;
+            })
+        })
+    })
+    //color picker
+    colorPicker.addEventListener("click", () => {
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = document.getElementById("colorPicker").value;
+                gridBox.style.backgroundColor = color;
+            })
+        })
+    })
 }
 // reset
 function reset(){
@@ -45,17 +73,25 @@ function reset(){
 addButton.addEventListener("click", ()=>{
     newSize = newSize+2;
     counter.innerHTML = newSize;
+    if(newSize >= 2){
+        decButton.disabled = false;
+        okButton.disabled = false;
+    }
 });
 // -- grid size with counter
 decButton.addEventListener("click", ()=>{
     newSize = newSize-2;
-    counter.innerHTML = newSize;
+    counter.innerHTML = Math.abs(newSize);
+    if(newSize<2){
+        decButton.disabled = true;
+        okButton.disabled = true;
+    }
 });
 // ok apply the new size
 okButton.addEventListener("click", adjustGrid);
 // apply new size of grid
 function adjustGrid(){
-    DEFAULT_GRID_SIZE = newSize;
+    DEFAULT_GRID_SIZE = Math.abs(newSize);
     clearGrid();
     createGrid();
 }
@@ -65,50 +101,6 @@ function clearGrid(){
         container.removeChild(element);
     });
 }
-//random color generator
-function rndColor(){
-    rgb.addEventListener("click", ()=>{
-        const gridBoxes = document.querySelectorAll(".gridBox");
-        gridBoxes.forEach(gridBox =>{
-            gridBox.addEventListener("mouseover", ()=>{
-                const randomColor = Math.floor(Math.random()*16777215).toString(16);
-                gridBox.style.backgroundColor = "#"+randomColor;
-            })
-        })
-    })
-    
-}
-function black(){
-    blackPencil.addEventListener("click", ()=>{
-        const gridBoxes = document.querySelectorAll(".gridBox");
-        gridBoxes.forEach(gridBox =>{
-            gridBox.addEventListener("mouseover", ()=>{
-                const color = "000000";
-                gridBox.style.backgroundColor = "#"+color;
-            })
-        })
-    })
-}
-function eraserTool(){
-    eraser.addEventListener("click", ()=> {
-        const gridBoxes = document.querySelectorAll(".gridBox");
-        gridBoxes.forEach(gridBox =>{
-            gridBox.addEventListener("mouseover", ()=>{
-                const color = "e2e3de";
-                gridBox.style.backgroundColor = "#"+color;
-            })
-        })
-    })
-}
-function colorPick(){
-    colorPicker.addEventListener("click", () => {
-        const gridBoxes = document.querySelectorAll(".gridBox");
-        gridBoxes.forEach(gridBox =>{
-            gridBox.addEventListener("mouseover", ()=>{
-                const color = document.getElementById("colorPicker").value;
-                gridBox.style.backgroundColor = color;
-            })
-        })
-    })
-}
+
+
 reset();
