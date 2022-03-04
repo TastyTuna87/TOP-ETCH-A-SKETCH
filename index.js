@@ -11,6 +11,11 @@ const decButton = document.getElementById("decCount");
 const counter = document.getElementById("counter");
 const okButton = document.getElementById("okay");
 
+const rgb = document.getElementById("rainbowColor");
+const eraser = document.getElementById("eraserTool");
+const blackPencil = document.getElementById("colorBlackButton");
+const colorPicker = document.getElementById("colorPicker");
+
 let DEFAULT_GRID_SIZE = 16;
 let newSize = 4;
 
@@ -25,6 +30,9 @@ function createGrid(){
         container.appendChild(grid);
     }
     rndColor();
+    black();
+    eraserTool();
+    colorPick();
 }
 // reset
 function reset(){
@@ -59,11 +67,47 @@ function clearGrid(){
 }
 //random color generator
 function rndColor(){
-    const gridBoxes = document.querySelectorAll(".gridBox");
-    gridBoxes.forEach(gridBox =>{
-        gridBox.addEventListener("mouseover", ()=>{
-            const randomColor = Math.floor(Math.random()*16777215).toString(16);
-            gridBox.style.backgroundColor = "#"+randomColor;
+    rgb.addEventListener("click", ()=>{
+        const gridBoxes = document.querySelectorAll(".gridBox");
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                gridBox.style.backgroundColor = "#"+randomColor;
+            })
+        })
+    })
+    
+}
+function black(){
+    blackPencil.addEventListener("click", ()=>{
+        const gridBoxes = document.querySelectorAll(".gridBox");
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = "000000";
+                gridBox.style.backgroundColor = "#"+color;
+            })
+        })
+    })
+}
+function eraserTool(){
+    eraser.addEventListener("click", ()=> {
+        const gridBoxes = document.querySelectorAll(".gridBox");
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = "e2e3de";
+                gridBox.style.backgroundColor = "#"+color;
+            })
+        })
+    })
+}
+function colorPick(){
+    colorPicker.addEventListener("click", () => {
+        const gridBoxes = document.querySelectorAll(".gridBox");
+        gridBoxes.forEach(gridBox =>{
+            gridBox.addEventListener("mouseover", ()=>{
+                const color = document.getElementById("colorPicker").value;
+                gridBox.style.backgroundColor = color;
+            })
         })
     })
 }

@@ -11,7 +11,15 @@
 <body class="body">
     <h1 class="header1">Etch-A-Sketch!</h1>
     <div class="drawBox">
-        <div class="container" id="mainBox" ></div>
+            <div class="colorPickerBox">
+                <input type="button" value="Black Color" id="colorBlackButton" class="button action">
+                <input type="button" value="Rainbow" id="rainbowColor" class="button action">
+                <input type="color" value="#0000ff" id="colorPicker" class="button action">
+                <input type="button" value="Eraser" id="eraserTool" class="button action">
+                <input type="button" value="reset" id="resetButton" class="button action">
+            </div>
+        <div class="container" id="mainBox" >
+        </div>
         <div class="buttonBox">
             <button id="addCount" class="button">+</button>
             <span id="counter" class="counter">4</span>
@@ -19,7 +27,6 @@
         </div>
         <div class="mainButtons">
             <input type="button" value="Ok" id="okay" class="button action">
-            <input type="button" value="reset" id="resetButton" class="button action">
         </div>
     </div>
 </body>
